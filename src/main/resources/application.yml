@@ -1,0 +1,14 @@
+spring:
+  config:
+    import: configserver:http://localhost:8888
+  application:
+    name: auth-service
+  cloud:
+    config:
+      fail-fast: true
+      retry:
+        max-attempts: 5
+        initial-interval: 2000    # 2 seconds
+        max-interval: 10000       # cap retry delay at 10 seconds
+        multiplier: 1.5           # exponential backoff
+
