@@ -21,7 +21,15 @@ public class WebSecurityConfig {
   private final UserInfoExtractionFilter userInfoExtractionFilter;
   private static final String[] WHITE_LIST_URL = {
           "/api/auth/login",
-          "/api-docs"
+          "/api-docs",
+          "/api/v1/auth/**",
+
+          // Swagger UI and API docs
+          "/v3/api-docs/**",
+          "/swagger-ui/**",
+          "/swagger-ui.html",
+          "/swagger-resources/**",
+          "/webjars/**"
   };
 
   @Bean

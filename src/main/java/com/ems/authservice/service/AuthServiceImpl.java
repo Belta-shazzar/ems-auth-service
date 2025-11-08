@@ -61,7 +61,8 @@ public class AuthServiceImpl implements AuthService {
 
   @Override
   public void changePassword(ChangePasswordRequest request, AppUser user) {
-    log.info("Changing password for email: {}", user.getUsername());
+    String username = user.getUsername();
+    log.info("Changing password for email: {}", username);
 
     if (!passwordEncoder.matches(request.currentPassword(), user.getPassword())) {
       throw new AuthenticationException("Current password is incorrect");
@@ -71,11 +72,11 @@ public class AuthServiceImpl implements AuthService {
     String newPassword = passwordEncoder.encode(request.newPassword());
 
     Employee employee = Employee.builder()
-            .email(user.getUsername())
+            .email(username)
             .password(newPassword)
             .build();
 
 //    TODO: Publish event to update employee's password
-    log.info("Password changed successfully for email: {}", user.getUsername());
+    log.info("Password changed successfully for email: {}", username);
   }
 }
