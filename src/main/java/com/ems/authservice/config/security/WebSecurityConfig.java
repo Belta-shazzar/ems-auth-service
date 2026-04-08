@@ -22,6 +22,7 @@ public class WebSecurityConfig {
   private static final String[] WHITE_LIST_URL = {
           "/api/auth/login",
           "/api-docs",
+          "/actuator/**",
           "/api/v1/auth/**",
 
           // Swagger UI and API docs

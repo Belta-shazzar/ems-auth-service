@@ -1,11 +1,11 @@
 spring:
   config:
-    import: configserver:http://localhost:8888
+    import: configserver:http://${CONFIG_SERVER_HOST:localhost}:8888
   application:
     name: auth-service
   cloud:
     config:
-      fail-fast: true
+#      fail-fast: true
       retry:
         max-attempts: 5
         initial-interval: 2000    # 2 seconds
