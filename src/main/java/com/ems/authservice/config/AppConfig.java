@@ -1,6 +1,8 @@
 package com.ems.authservice.config;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.caffeine.CaffeineCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,5 +35,11 @@ public class AppConfig {
           AuthenticationConfiguration configuration
   ) throws Exception {
     return configuration.getAuthenticationManager();
+  }
+
+//  Prod level load balancer cache
+  @Bean
+  CacheManager cacheManager() {
+    return new CaffeineCacheManager();
   }
 }

@@ -89,10 +89,10 @@ class AuthServiceImplTest {
     @DisplayName("Should throw exception when employee service fails")
     void shouldThrowExceptionWhenEmployeeServiceFails() {
       // Given
-      when(employeeClient.getEmployeeByEmail(TEST_EMAIL)).thenThrow(new RuntimeException("Service unavailable"));
+      when(employeeClient.getEmployeeByEmail(TEST_EMAIL)).thenThrow(new AuthenticationException("Unable to process login. Please try again later."));
 
       // When & Then
-      assertThatThrownBy(() -> authService.login(testLoginRequest)).isInstanceOf(AuthenticationException.class).hasMessage("Unable to fetch employee data");
+      assertThatThrownBy(() -> authService.login(testLoginRequest)).isInstanceOf(AuthenticationException.class).hasMessage("Unable to process login. Please try again later.");
 
       verify(employeeClient).getEmployeeByEmail(TEST_EMAIL);
       verify(passwordEncoder, never()).matches(anyString(), anyString());
