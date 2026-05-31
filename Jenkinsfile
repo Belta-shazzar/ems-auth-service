@@ -47,16 +47,16 @@ pipeline {
                 echo "Service: ${env.SERVICE_NAME} | Tag: ${env.TAG} | Environment: ${params.ENVIRONMENT}"
 
                 script {
-                        env.TAG = params.IMAGE_TAG ?: sh(
-                            script: 'git rev-parse --short HEAD',
-                            returnStdout: true
-                        ).trim()
+                    env.TAG = params.IMAGE_TAG ?: sh(
+                        script: 'git rev-parse --short HEAD',
+                        returnStdout: true
+                    ).trim()
 
-                        env.IMAGE = "${params.REGISTRY}/${env.IMAGE_REPO}:${env.TAG}"
-                    }
-
-                    echo "Building ${env.IMAGE}"
+                    env.IMAGE = "${params.REGISTRY}/${env.IMAGE_REPO}:${env.TAG}"
                 }
+
+                echo "Building ${env.IMAGE}"
+
             }
         }
 
