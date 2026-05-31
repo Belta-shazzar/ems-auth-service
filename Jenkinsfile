@@ -28,7 +28,7 @@ pipeline {
         DOCKER_CREDS   = credentials('docker-registry-credentials')
         SERVICE_NAME   = 'auth-service'
 
-        IMAGE_REPO = 'shazzar/ems-api-gateway'
+        IMAGE_REPO = 'shazzar/ems-auth-service'
     }
 
     options {
