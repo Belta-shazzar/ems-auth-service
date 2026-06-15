@@ -44,7 +44,6 @@ pipeline {
         stage('Checkout') {
             steps {
                 checkout scm
-                echo "Service: ${env.SERVICE_NAME} | Tag: ${env.TAG} | Environment: ${params.ENVIRONMENT}"
 
                 script {
                     env.TAG = params.IMAGE_TAG ?: sh(
